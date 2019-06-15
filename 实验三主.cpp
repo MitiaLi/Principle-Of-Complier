@@ -33,6 +33,7 @@ bool isOpeartor(string str);//判断栈顶元素是不是操作符
 bool isOpeartor(char c);//判断输入串要移入的元素是不是操作符 
 bool OpeartorPriority();//算符优先分析
 string ConcludeAnalyse(stack<string> analyseStack, char c);//规约分析 
+double TransMode(queue<string> concludeQ);//翻译模式 
 void ERROR();//程序出错 
 int main() {
 	cin>>st;
@@ -65,7 +66,36 @@ string ConcludeAnalyse(stack<string> analyseStack, char c)
 		Q = analyseStack.top();
 	}while(pt[c_d[Q[0]]][c_d[c]] != '<')
 	
+	
 }
+double TransMode(queue<string> concludeQ)
+{
+	if(concludeQ.size()==3)
+	{
+		double res = 0;
+		string op2 = concludeQ.front();
+		concludeQ.pop();
+		string op = concludeQ.front();
+		concludeQ.pop();
+		string op1 = concludeQ.front();
+		concludeQ.pop();
+		
+		if(op2==")")
+		{
+			return double(atoi(op.c_str()));
+		}else{
+			if(op == "+"){
+				return double(atoi(op1.c_str())) + double(atoi(op2.c_str()));
+			}else if(op == "-"){
+				return double(atoi(op1.c_str())) + double(atoi(op2.c_str()));
+			}else if(op == "*"){
+				return double(atoi(op1.c_str())) * double(atoi(op2.c_str()));
+			}else{
+				return double(atoi(op1.c_str())) / double(atoi(op2.c_str()));
+			}
+		}
+	}
+} 
 bool OpeartorPriority()
 {
 	/*

@@ -36,10 +36,10 @@ string ConcludeAnalyse(stack<string> analyseStack, char c);//规约分析
 double TransMode(queue<string> concludeQ);//翻译模式 
 void ERROR();//程序出错 
 int main() {
-	cin>>st;
-	CreatePriorityTable();
-	PrintPriorityTable();
-	analyseStack.push("#");
+//	cin>>st;
+//	CreatePriorityTable();
+//	PrintPriorityTable();
+//	analyseStack.push("#");
 	
 	return 0;
 }
@@ -64,8 +64,8 @@ string ConcludeAnalyse(stack<string> analyseStack, char c)
 			analyseStack.pop();
 		}
 		Q = analyseStack.top();
-	}while(pt[c_d[Q[0]]][c_d[c]] != '<')
-	
+	}while(pt[c_d[Q[0]]][c_d[c]] != '<');
+	return Q;
 	
 }
 double TransMode(queue<string> concludeQ)
@@ -87,7 +87,7 @@ double TransMode(queue<string> concludeQ)
 			if(op == "+"){
 				return double(atoi(op1.c_str())) + double(atoi(op2.c_str()));
 			}else if(op == "-"){
-				return double(atoi(op1.c_str())) + double(atoi(op2.c_str()));
+				return double(atoi(op1.c_str())) - double(atoi(op2.c_str()));
 			}else if(op == "*"){
 				return double(atoi(op1.c_str())) * double(atoi(op2.c_str()));
 			}else{
@@ -113,7 +113,7 @@ bool OpeartorPriority()
 			if(!isOpeartor(st[index]))             //如果输入串要移入的是数字 
 			{
 				string data=getValueS(index);
-				char c =  pt[c_d[s]][c_d['n']]   //从优先表中获取栈顶元素与移入元素的优先级
+				char c =  pt[c_d[s]][c_d['n']];   //从优先表中获取栈顶元素与移入元素的优先级
 				cout<<"s"<<s<<"\tn\t";
 				cout<<c<<endl;
 				if(c == '<' || c=='=')			//如果是 < = 则把这个元素移进分析栈 
